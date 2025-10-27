@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category category = new Category(name, description);
 
-        return categoryRepository.save(category);
+        return this.categoryRepository.save(category);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         Category category = new Category(name, description);
 
-        return categoryRepository.save(category);
+        return this.categoryRepository.save(category);
     }
 
     @Override
