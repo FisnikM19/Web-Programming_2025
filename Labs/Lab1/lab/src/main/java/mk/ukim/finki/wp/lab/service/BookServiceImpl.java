@@ -29,4 +29,9 @@ public class BookServiceImpl implements BookService {
 
         return this.bookRepository.searchBooks(text, rating);
     }
+
+    @Override
+    public void delete(String name) {
+        this.bookRepository.delete(name);
+    }
 }

@@ -21,4 +21,9 @@ public class InMemoryBookRepository implements BookRepository {
                         book.getAverageRating() >= rating)
                 .toList();
     }
+
+    @Override
+    public void delete(String name) {
+        DataHolder.books.removeIf(b -> b.getTitle().equals(name));
+    }
 }

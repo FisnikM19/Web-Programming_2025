@@ -48,6 +48,10 @@
                            required>
                     <span th:text="'Title: ' + ${book.title} + ', Genre: ' + ${book.genre} + ', Rating: ' + ${book.averageRating}"></span>
                 </label>
+                <form th:action="@{/delete}" method="POST" style="display:inline;">
+                    <input type="hidden" th:name="title" th:value="${book.title}" />
+                    <button type="submit">Delete</button>
+                </form>
             </div>
         </div>
 
