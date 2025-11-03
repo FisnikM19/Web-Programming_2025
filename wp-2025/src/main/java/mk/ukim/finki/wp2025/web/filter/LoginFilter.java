@@ -2,17 +2,25 @@ package mk.ukim.finki.wp2025.web.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mk.ukim.finki.wp2025.model.User;
 
 import java.io.IOException;
 
-@WebFilter
+// Filter configured to intercept all requests except those to the login page
+@WebFilter(filterName = "auth-filter", urlPatterns = "/*",
+        dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD},
+        initParams = @WebInitParam(name = "ignore-path", value = "/login")
+)
 public class LoginFilter implements Filter {
+    private String ignorePath;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
+        this.ignorePath = filterConfig.getInitParameter("ignore-path");
     }
 
     @Override
@@ -25,7 +33,7 @@ public class LoginFilter implements Filter {
 
         String path = req.getServletPath();
 
-        if (loggedInUser == null && !path.equals("/login")) {
+        if (loggedInUser == null && !this.ignorePath.startsWith(path)) {
             // If the user is not logged in and the requested path is not the login page, redirect the user to the login page
             resp.sendRedirect("/login");
         } else {
