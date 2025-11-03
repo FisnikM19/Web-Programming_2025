@@ -36,6 +36,11 @@ public class CategoryServlet extends HttpServlet {
         context.setVariable("errorMessage", req.getParameter("errorMessage"));
         context.setVariable("categories", this.categoryService.listCategories());
 
+        // Update and retrieve the user views count from the servlet context
+        Integer userViews = (Integer) getServletContext().getAttribute("userViews");
+        getServletContext().setAttribute("userViews", userViews);
+        context.setVariable("userViews", userViews);
+
         springTemplateEngine.process("categories.html", context, resp.getWriter());
     }
 

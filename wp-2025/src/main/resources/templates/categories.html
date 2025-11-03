@@ -17,6 +17,10 @@
     <th:block th:text="'User Agent: ' + ${userAgent}"/>
 </p>
 
+<th:block>
+    <div th:text="${userViews?:0}"></div>
+</th:block>
+
 <th:block th:if="${session.user}">
     <h2>Info about user</h2>
     <div th:text="${session.user.username}"></div>
