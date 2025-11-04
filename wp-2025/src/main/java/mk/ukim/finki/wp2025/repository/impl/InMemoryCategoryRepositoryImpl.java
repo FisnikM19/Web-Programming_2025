@@ -1,6 +1,5 @@
 package mk.ukim.finki.wp2025.repository.impl;
 
-
 import mk.ukim.finki.wp2025.bootstrap.DataHolder;
 import mk.ukim.finki.wp2025.model.Category;
 import mk.ukim.finki.wp2025.repository.CategoryRepository;
@@ -12,11 +11,19 @@ import java.util.Optional;
 // Repository for handling the in-memory storage of categories
 @Repository
 public class InMemoryCategoryRepositoryImpl implements CategoryRepository {
+
+    @Override
+    public Optional<Category> findById(Long id) {
+        return DataHolder.categories.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
+    }
+
     public Category save(Category category) {
         // Remove any existing category with the same name before adding (prevents duplicates)
         // Note: We're using names as identifiers for simplicity
         // In later lectures you'll learn why unique IDs are the better approach!
-        DataHolder.categories.removeIf(c -> c.getName().equals(category.getName()));
+        DataHolder.categories.removeIf(c -> c.getId().equals(category.getId()));
 
         DataHolder.categories.add(category);
 
@@ -46,5 +53,10 @@ public class InMemoryCategoryRepositoryImpl implements CategoryRepository {
     @Override
     public void delete(String name) {
         DataHolder.categories.removeIf(c -> c.getName().equals(name));
+    }
+
+    @Override
+    public void delete(Long id) {
+        DataHolder.categories.removeIf(c -> c.getId().equals(id));
     }
 }

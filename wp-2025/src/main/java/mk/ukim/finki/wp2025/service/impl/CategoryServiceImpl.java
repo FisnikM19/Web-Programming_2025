@@ -6,9 +6,11 @@ import mk.ukim.finki.wp2025.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
     private final CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
@@ -18,6 +20,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> listCategories() {
         return this.categoryRepository.findAll();
+    }
+
+    @Override
+    public Optional<Category> findById(Long id) {
+        return categoryRepository.findById(id);
     }
 
     @Override

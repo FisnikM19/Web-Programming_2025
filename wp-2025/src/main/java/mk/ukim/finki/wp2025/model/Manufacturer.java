@@ -3,16 +3,17 @@ package mk.ukim.finki.wp2025.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data // Generates getters, setters, toString, equals, and hashCode methods
+@Data
 @AllArgsConstructor
-public class Category {
+public class Manufacturer {
+
     private Long id;
     private String name;
-    private String description;
+    private String address;
 
-    public Category(String name, String description) {
+    public Manufacturer(String name, String address) {
         this.id = (long) (Math.random() * 1000);
         this.name = name;
-        this.description = description;
+        this.address = address;
     }
 }

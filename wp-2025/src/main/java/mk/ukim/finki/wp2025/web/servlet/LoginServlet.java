@@ -61,6 +61,6 @@ public class LoginServlet extends HttpServlet {
         // On successful login, store the user in the session and redirect to the categories page
         req.getSession().setAttribute("user", user);
 
-        resp.sendRedirect("/servlet/category");
+        resp.sendRedirect("/products");
     }
 }
