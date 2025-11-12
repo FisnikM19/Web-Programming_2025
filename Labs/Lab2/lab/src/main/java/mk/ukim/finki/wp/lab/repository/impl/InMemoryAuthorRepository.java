@@ -27,4 +27,13 @@ public class InMemoryAuthorRepository implements AuthorRepository {
     public void delete(Long id) {
         DataHolder.authors.removeIf(a -> a.getId().equals(id));
     }
+
+    //TODO:
+
+    @Override
+    public Author save(Author author) {
+        DataHolder.authors.removeIf(a -> a.getId().equals(author.getId()));
+        DataHolder.authors.add(author);
+        return author;
+    }
 }

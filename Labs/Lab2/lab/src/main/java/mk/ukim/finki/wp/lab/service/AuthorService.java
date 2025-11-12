@@ -12,4 +12,21 @@ public interface AuthorService {
     public List<Author> findAll();
 
     void delete(Long id);
+
+    //TODO:
+    Author create(
+            String name,
+            String surname,
+            String country,
+            String biography
+    );
+
+    Author update(
+            Long id,
+            String name,
+            String surname,
+            String country,
+            String biography
+    );
+
 }

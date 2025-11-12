@@ -12,4 +12,7 @@ public interface AuthorRepository {
     public List<Author> findAll();
 
     void delete(Long id);
+
+    //TODO:
+    Author save(Author author);
 }
